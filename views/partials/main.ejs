@@ -7,7 +7,7 @@
 </button>
 
 <div class="well" ng-show="reveal_form"> 
-    <form class="form-horizontal">
+    <form class="form-horizontal" ng-hide="form_data">
         <fieldset>
             <legend>Form</legend>
             <div class="form-group">
@@ -23,14 +23,14 @@
             </div> 
         </fieldset>
     </form>
-    <!--
-    <button class="btn btn-primary" type="button" ng-click="add_question()"> 
+
+    <h1 ng-show="form_data">{{form_data[0].name}}</h1>
+
+    <button class="btn btn-primary" type="button" ng-click="add_question()" ng-show="form_data"> 
         <span ng-show="reveal_creator">[-]</span>
         <span ng-hide="reveal_creator">+</span>
         Add Question
     </button>
-    -->
-    {{form_data}}
 </div>
 
 <div class="well" ng-show="reveal_creator">

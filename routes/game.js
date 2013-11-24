@@ -16,25 +16,41 @@ exports.field = function(req, res) {
 
 exports.create_form = function(req, res) {
 
-    console.log(req.body);
-
     var post = {
         'name': req.body.name
+      , 'name_id': req.body.name_id
     }
 
     async.waterfall([
         function(callback) {
             //this should check if Forms exist. Send down a reply to second callback. 
-        },
-        function(arg, callback) { 
-            client.query("INSERT INTO Forms SET ?", post, function(err, result) {
+            client.query("SELECT * FROM Forms WHERE ?", {"name_id": req.body.name_id}, function(err, result) {  
                 callback(null, result);
             });
         },
-        function(arg1, callback) { 
-            client.query("SELECT * FROM Forms WHERE ?", {id: arg1.insertId}, function(err, result) {
+        function(arg, callback) {  
+            if(arg.length > 0) { 
+                //record exists throw error json 
+                callback(null, {"status": "record exists", "success": arg});
+            } else {
+                client.query("INSERT INTO Forms SET ?", post, function(err, result) { 
+                    callback(null, {"status": "new record", "success": result});
+                });    
+            }
+        },
+        function(arg, callback) { 
+
+            var id;
+            if(typeof arg.success.length != 'undefined') {
+                id = arg.success[0].id;     
+            } else {
+                id = arg.success.insertId;         
+            }
+
+            client.query("SELECT * FROM Forms WHERE ?", {"id": id}, function(err, result) {
                 callback(null, result);
             }); 
+
         },
     ], function(err, result) {
         res.json(result);
@@ -43,40 +59,48 @@ exports.create_form = function(req, res) {
 
 exports.create_question = function(req, res) {
 
-    //console.log(req.body); 
-    /*
     async.waterfall([
+        
         function(callback) { 
-
-            var post = {
-                'name': makeid()
-              , 'theme': 'light'
-            }
-
-            client.query("INSERT INTO Forms SET ?", post, function(err, result) {
+            client.query("SELECT * FROM ElementType WHERE ?", {"name": req.body.type}, function(err, result) { 
                 callback(null, result);
-            });
+            })
         },
-        function(arg1, callback) { 
-            client.query("SELECT id FROM ElementType WHERE ?", {name: req.body.type}, function(err, result) {
-                callback(null, result, arg1);
-            }); 
-        },
-        function(dbresult, arg1, callback) {
-
+        function(arg, callback) {
+            //do some checking where in existing FormElements just add field to ElementListValues
             var post = {
-                'form_id': arg1.insertId
-              , 'question':req.body.question 
-              , 'element_type_id': dbresult[0].id
-            }
+                'form_id': req.body.form_data[0].id
+              , 'question': req.body.question
+              , 'element_type_id': arg[0].id
+            } 
 
             client.query("INSERT INTO FormElements SET ?", post, function(err, result) {
                 callback(null, result);
             });
+        },
+        function(arg, callback)  {
+            //console.log(arg.insertId);
+            //console.log(req.body);
+            if(req.body.type == "multi_choice_one" || req.body.type == "multi_choice_multi") {
+                if(req.body.fields.length > 0) {
+                    for(var i=0;req.body.fields.length>i;i++) {
 
-        }
+                        var data = req.body.fields[i];
+
+                        var post = {
+                            "element_id": arg.insertId
+                          , "name": data.field_value
+                          , "value": data.field_key
+                        }
+
+                        client.query("INSERT INTO ElementListValues SET ?", post, function(err, result) {});
+                    }
+                }
+            }
+            callback(null, {"result": "okay"})
+        },
     ], function(err, result) {
         res.json(result);
     });
-    */
+
 }

@@ -11,6 +11,7 @@ function GameCtrl($scope, $http) {
 
     $scope.form = {};
     $scope.form.form_fields = []; 
+    $scope.form_data = false;
 
     $scope.open_creator = function() {
         $scope.reveal_form = !$scope.reveal_form; 
@@ -46,6 +47,7 @@ function GameCtrl($scope, $http) {
     $scope.create_form = function() {
         var data = {
             'name': $scope.form_name
+          , 'name_id': $scope.form_name.split(' ').join('_').toLowerCase().replace(/[!?*^%@.-]/g, '')
           , 'post': $scope.form_data
         };
         
@@ -68,6 +70,7 @@ function GameCtrl($scope, $http) {
             })
           , "type": $scope.question_type
           , "question": $scope.question
+          , "form_data": $scope.form_data
         }
 
         if($scope.question) {
