@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey Please</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico?v=2" />
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+
+    <script src="javascripts/jquery-1.10.2.js"></script>
+    <script src="javascripts/angular.js"></script>
+    <script src="javascripts/bootstrap.js"></script>
+
+    <script src="javascripts/game/main.js"></script>
+
+    <script src="javascripts/game/controllers/gamectrl.js"></script>
+    <script src="javascripts/game/directives/formcomponents.js"></script>
+    <script src="javascripts/game/directives/angular.compilehtml.js"></script>
+
+        <style>
+            body {
+                padding-top: 60px;     
+            }
+        </style>
+  </head>
+  <body ng-app="Main">
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">Survey Please</a>
+                </div>
+
+                <div id="navbar-main" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#game">Game</a></li>
+                    </ul> 
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ng-view></ng-view>
+        </div>
+  </body>
+</html>
