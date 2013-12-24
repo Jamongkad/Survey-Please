@@ -10,6 +10,10 @@ angular.module('Directives', [])
                     $scope.$emit('update-msg', 'How did I get into this box?');
                 }
 
+                if($scope.ticks == 15) {
+                    $scope.options = true;     
+                }
+
                 if($scope.ticks == 20) {  
                     $scope.$emit('update-msg', 'How do I get out?');
                 }

@@ -14,9 +14,11 @@ function GameCtrl($scope, $http, Game) {
     Game.gameover = false;
 
     Game.logic = function() {
+        /*
         if($scope.ticks >= 10) {
             Game.gameover = true     
         }
+        */
         $scope.$apply(); 
     }
    
