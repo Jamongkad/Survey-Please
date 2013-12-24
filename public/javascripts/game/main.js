@@ -1,4 +1,4 @@
-var app = angular.module("Main", ['formcomponents', 'CompileHtml']);
+var app = angular.module("Main", ['Services', 'Directives']);
 
 app.config(function($routeProvider) {
     $routeProvider   

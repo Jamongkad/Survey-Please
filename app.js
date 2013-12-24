@@ -31,13 +31,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
 app.get('/game/main', game.main);
-app.get('/game/multiple_view', game.multiple_view);
-app.get('/game/field', game.field);
-
-app.post('/game/create_question', game.create_question);
-app.post('/game/create_form', game.create_form);
+app.get('/game/pressme', game.pressme);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

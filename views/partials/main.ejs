@@ -1,90 +1,25 @@
-<h1>Create Survey Form</h1>
-
-<button class="btn btn-primary" type="button" ng-click="open_creator()"> 
-    <span ng-show="reveal_form">[-]</span>
-    <span ng-hide="reveal_form">+</span>
-    Create Form
-</button>
-
-<div class="well" ng-show="reveal_form"> 
-    <form class="form-horizontal" ng-hide="form_data">
-        <fieldset>
-            <legend>Form</legend>
-            <div class="form-group">
-                <label class="col-lg-2 control-label">Form Name:</label> 
-                <div class="col-lg-10"><input type="text" class="form-control" ng-model="form_name"/></div>
-            </div>
-
-            <div class="form-group"> 
-                <div class="col-lg-10">
-                    <button class="btn btn-default" ng-click="open_creator()">Cancel</button>
-                    <button class="btn btn-primary" type="submit" ng-click="create_form()">Create Form</button>
-                </div>
-            </div> 
-        </fieldset>
-    </form>
-
-    <h1 ng-show="form_data">{{form_data[0].name}}</h1>
-
-    <button class="btn btn-primary" type="button" ng-click="add_question()" ng-show="form_data"> 
-        <span ng-show="reveal_creator">[-]</span>
-        <span ng-hide="reveal_creator">+</span>
-        Add Question
-    </button>
+<div class="col-md-4">
+    <h3>I am in a box</h3>
+    <p ng-repeat="msg in msgs">{{msg}}</p>
 </div>
 
-<div class="well" ng-show="reveal_creator">
-    <form class="form-horizontal">
-        <fieldset> 
-            <legend>Question</legend>
-            <div class="form-group">
-                <label class="col-lg-2 control-label">Question Text:</label> 
-                <div class="col-lg-10"><input type="text" class="form-control" ng-model="question" required/></div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label">Question Type:</label> 
-                <div class="col-lg-10">
-                    <select ng-model="question_type" ng-change="select_type()">
-                        <option value="default">Choose Question Type</option> 
-                        <option value="multi_choice_one">Multiple Choice (Only One Answer)</option> 
-                        <option value="multi_choice_multi">Multiple Choice (Multiple Answers)</option> 
-                        <option value="rating">Rating Scale</option> 
-                        <option value="open_ended">Open ended</option> 
-                        <!--<option value="matrix_choice_one">Matrix of Choices (One answer per row)</option>-->
-                        <!--<option value="matrix_choice_multi">Matrix of Choices (Multiple answers per row)</option>-->
-                        <!--<option value="matrix_choice_drop">Matrix of Dropdown Menus</option>-->
-                    </select> 
-                </div>
-            </div>
-
-            <div class="form-group" ng-show="question_type != 'default'"> 
-                <div class="col-lg-10">
-                    <span ng-switch on="question_type">
-                        <span ng-switch-when="rating"><rating></rating></span>
-                        <span ng-switch-when="multi_choice_one">
-                            <multi></multi>
-                            <button class="btn btn-sm btn-primary" type="button" ng-click="add_choice()">[+] Add Field</button>
-                        </span>
-                        <span ng-switch-when="multi_choice_multi">
-                            <multi></multi>
-                            <button class="btn btn-sm btn-primary" type="button" ng-click="add_choice()">[+] Add Field</button>
-                        </span>
-                    </span>
-                </div>
-            </div>
-
-            <div class="form-group"> 
-                <div class="col-lg-10">
-                    <button class="btn btn-default">Cancel</button>
-                    <button class="btn btn-primary" type="submit" ng-click="create_question()">Create Question</button>
-                </div>
-            </div> 
-        </fieldset>
-    </form>
+<div class="col-md-4">
+    <h3>Nudge box...<span ng-show="ticks" ng-bind="ticks"></span></h3>
+    <press-me></press-me>
 </div>
-<div class="well" ng-show="form_create">
-    {{question}}
-    {{question_type}}
-    {{form.form_fields}}
+
+<div ng-show="options" class="col-md-4">
+    <h3>What are my options?</h3>
 </div>
+
+<!--
+<div class="col-md-4">
+    <div ng-show="buy">
+        <auto-clicker></auto-clicker> 
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div ng-repeat="d in autoclicker">{{d.type}}</div>
+</div>
+-->
