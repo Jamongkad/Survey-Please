@@ -6,24 +6,25 @@ angular.module('Directives', [])
       , controller: function($scope, $element, $attrs) {
             $scope.press = function() {
                 $scope.ticks++;
-                if($scope.ticks == 10) { 
-                    $scope.$emit('update-msg', 'How did I get into this box?');
-                }
 
-                if($scope.ticks == 15) {
-                    $scope.options = true;     
+                if($scope.ticks == 10) { 
+                    $scope.$emit('update-msg', {'text': 'How did I get into this box?'});
                 }
 
                 if($scope.ticks == 20) {  
-                    $scope.$emit('update-msg', 'How do I get out?');
+                    $scope.$emit('update-msg', {'text': 'How do I get out?'});
                 }
 
                 if($scope.ticks == 30) {  
-                    $scope.$emit('update-msg', 'I am trapped!');
+                    $scope.$emit('update-msg', {'text': 'I am trapped!'});
                 }
 
                 if($scope.ticks == 40) {  
-                    $scope.$emit('update-msg', 'Somebody help me!');
+                    $scope.$emit('update-msg', {'text': 'Somebody help me!'});
+                }
+
+                if($scope.ticks == 50) {  
+                    $scope.$emit('update-msg', {'text': 'You find a note. <a href="#" ng-click="read($event)">read it?</a>'});
                 }
 
             }
@@ -45,3 +46,4 @@ angular.module('Directives', [])
       , link: function(scope, element, attrs) {}
     }
 });
+

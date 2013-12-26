@@ -9,3 +9,7 @@ exports.main = function(req, res) {
 exports.pressme = function(req, res) {    
     res.render("partials/pressme");
 };
+
+exports.console_item = function(req, res) {    
+    res.render("partials/console_item");
+}
