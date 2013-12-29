@@ -1,4 +1,4 @@
-function GameCtrl($scope, $http, Game) {
+function GameCtrl($scope, $http, Game, Room) {
     
     $scope.ticks = 0;    
 
@@ -32,33 +32,13 @@ function GameCtrl($scope, $http, Game) {
         $scope.delete_msg(val);
     });
 
+    $scope.$on('push-message', function(ev, val) {
+        $scope.add_msg({'text': val});
+    });
+
     $scope.delete_msg = function(val) { 
         var position = $scope.msgs.indexOf(val);
         if(~position) $scope.msgs.splice(position, 1);
-    }
-
-    $scope.look_at_door = function() { 
-        /*  
-        $.ajax({
-            type: "GET"
-          , url: "/game/door_desc"
-          , success: function(msg) {  
-                bootbox.alert(msg);    
-            }
-        })
-        */
-
-        $scope.add_msg({'text': 'A large door stands infront of you. It\'s locked.'});
-    }
-
-    $scope.look_at_window = function() { 
-        /*
-        $('#element-to-pop').bPopup({
-            content: 'image'
-          , loadUrl:'/images/creepywindow.jpg'
-        });           
-        */
-        $scope.add_msg({'text': 'A smoky window stands before you. It is rusted shut.'});
     }
 
     $scope.open_door = function() {      
@@ -76,8 +56,16 @@ function GameCtrl($scope, $http, Game) {
             $scope.stamina = $scope.stamina - 3;
             $scope.add_msg({'text': 'You are too tired to open the door'}); 
         }
-        */
-      
+        */ 
+    }
+
+    $scope.open = function(path_object) {
+        
+        var find = _.find(Room, function(obj) { 
+            return obj.room == path_object;
+        });
+
+        $scope.actions = find;
     }
 
     $scope.open_window = function() {       
@@ -92,8 +80,7 @@ function GameCtrl($scope, $http, Game) {
     }
 
     $scope.why = function() { 
-        var kill_text = {'text': "Killed her? What are you talking about? I didn't kill anyone"};
-        $scope.add_msg(kill_text);
+        $scope.add_msg({'text': "Killed her? What are you talking about? I didn't kill anyone"});
         $scope.hide_why = true;
     }
     
@@ -111,7 +98,7 @@ function GameCtrl($scope, $http, Game) {
     }
     
     var gameover = false
-    //timer 
+    //timers
     setInterval(function() { 
 
         if($scope.will != 0) {

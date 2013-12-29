@@ -21,18 +21,23 @@
 
     <div class="col-md-2">
         <h3>Room</h3> 
+        <!--
         <p><button class="btn" ng-click="look_at_door()">door</button></p>
         <p><button class="btn" ng-click="look_at_window()">window</button></p>
+        -->        
+        <p><button class="btn" ng-click="open('door')">door</button></p>
+        <p><button class="btn" ng-click="open('window')">window</button></p>
     </div>
 
     <div class="col-md-3">
         <h3>Actions</h3> 
+        <clicker d="actions"></clicker>
+        <!--
         <p>  
             <button class="btn" ng-if="!hide_door" ng-click="open_door()">
                 <span>open door</span>
             </button>
         </p>
-
         <p>  
             <button class="btn" ng-if="!hide_door" ng-click="open_window()">
                 <span>open window</span>
@@ -41,7 +46,7 @@
 
         <p><button class="btn" ng-click="scream()" ng-if="hide_scream">Scream for help.</button></p>
         <p><button class="btn" ng-click="why()" ng-hide="hide_why">What is this letter?</button></p>
-        <p><button class="btn" ng-click="sleep()">sleep</button></p>
+        --> 
     </div>
 </div>
 

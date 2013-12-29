@@ -1,4 +1,4 @@
-angular.module('Services', [])
+angular.module('Services', ['Room'])
 .service('Game', function($rootScope) { 
     var Game = {};
 

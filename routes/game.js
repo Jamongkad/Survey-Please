@@ -10,6 +10,10 @@ exports.pressme = function(req, res) {
     res.render("partials/pressme");
 };
 
+exports.buttons = function(req, res) {    
+    res.render("partials/button_view");
+};
+
 exports.console_item = function(req, res) {    
     res.render("partials/console_item");
 }
