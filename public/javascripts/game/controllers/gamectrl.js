@@ -64,13 +64,11 @@ function GameCtrl($scope, $http, Game, Room) {
         var find = _.find(Room, function(obj) { 
             return obj.room == path_object;
         });
-
-        $scope.actions = find;
-    }
-
-    $scope.open_window = function() {       
-        $scope.add_msg({'text': "You attempt to open the window. It won't budge."});
-        $scope.stamina = $scope.stamina - 1; 
+        
+        if(find) {
+            $scope.actions = find;     
+        }
+       
     }
 
     $scope.scream = function() { 
@@ -120,8 +118,4 @@ function GameCtrl($scope, $http, Game, Room) {
         Game.gameover = gameover;
     }
    
-}
-
-function find_place(x, n) {
-    return x >= 10 ? find_place(x / 10, (n || 1) * 10) : n || 1;
 }
