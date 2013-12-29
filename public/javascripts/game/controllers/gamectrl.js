@@ -38,27 +38,34 @@ function GameCtrl($scope, $http, Game) {
     }
 
     $scope.look_at_door = function() { 
-        $('#element-to-pop').bPopup({
-            content: 'image'
-          , loadUrl:'/images/creepydoor.jpg'
-        });           
+        /*  
+        $.ajax({
+            type: "GET"
+          , url: "/game/door_desc"
+          , success: function(msg) {  
+                bootbox.alert(msg);    
+            }
+        })
+        */
+
         $scope.add_msg({'text': 'A large door stands infront of you. It\'s locked.'});
     }
 
     $scope.look_at_window = function() { 
+        /*
         $('#element-to-pop').bPopup({
             content: 'image'
           , loadUrl:'/images/creepywindow.jpg'
         });           
+        */
         $scope.add_msg({'text': 'A smoky window stands before you. It is rusted shut.'});
     }
 
     $scope.open_door = function() {      
 
-        $scope.add_msg({'text': "You attempt to open the door."});
-        
-        $scope.door_attempts++;
-
+        $scope.add_msg({'text': "You attempt to open the door. It won't budge."});
+        $scope.stamina = $scope.stamina - 1; 
+        /*
         if($scope.door_attempts == 30) {
             $scope.hide_scream = true;
             $scope.add_msg({'text': 'You find a note. <a href="#" ng-click="read_note($event)">read it?</a>'}); 
@@ -69,7 +76,13 @@ function GameCtrl($scope, $http, Game) {
             $scope.stamina = $scope.stamina - 3;
             $scope.add_msg({'text': 'You are too tired to open the door'}); 
         }
+        */
       
+    }
+
+    $scope.open_window = function() {       
+        $scope.add_msg({'text': "You attempt to open the window. It won't budge."});
+        $scope.stamina = $scope.stamina - 1; 
     }
 
     $scope.scream = function() { 
@@ -83,7 +96,8 @@ function GameCtrl($scope, $http, Game) {
         $scope.add_msg(kill_text);
         $scope.hide_why = true;
     }
-
+    
+    //deprecated
     $scope.trim_msgs = function() { 
         if($scope.msgs.length >= 10) {
             $scope.msgs.pop();
@@ -105,8 +119,6 @@ function GameCtrl($scope, $http, Game) {
         } else {
             gameover = true
         }
-
-        $scope.trim_msgs(); 
         $scope.$apply(); 
 
     }, 2000);

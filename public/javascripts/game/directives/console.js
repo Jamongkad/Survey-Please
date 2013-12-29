@@ -1,4 +1,18 @@
 angular.module('console', [])
+.directive('consoleBox', function() {
+    return {
+        restrict: 'A'     
+      , link: function($scope, element, attrs) {
+
+            $scope.$on("changes", function(ev, val) {
+                console.log(val);
+
+                $(element).tinyscrollbar();     
+                $(element).tinyscrollbar_update();
+            })
+        }
+    }    
+})
 .directive('console', function($compile, $sce) { 
     return {
         restrict: 'E'     
@@ -7,16 +21,6 @@ angular.module('console', [])
 
       , controller: function($scope, $element, $attrs) {
 
-            $scope.read_note = function($event) {
-
-                bootbox.alert("<h2>You killed her.</h2>", function() {
-                    $scope.$emit('reveal-why');
-                    $scope.$emit('delete-note', $scope.m);
-                });
-
-                $event.preventDefault();
-            }
-
         }
 
       , link: function($scope, element, attrs) {
@@ -24,8 +28,9 @@ angular.module('console', [])
             $scope.$watch('m', function(val) {
                 element.html($scope.m.text);     
                 $compile(element.contents())($scope);
+                $scope.$emit("changes", "tiny pwets");
             });
  
         }
     }
-});
+})

@@ -1,0 +1,3 @@
+function NoteCtrl($scope) {
+
+}
