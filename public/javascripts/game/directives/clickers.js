@@ -27,18 +27,10 @@ angular.module('Directives', [])
             })
 
             $scope.action = function(obj) {
-                console.log(obj.main.cool());
-                /* experiments in two way binding!
-                if(obj.actions.open == false) {
-                    obj.actions.open = 'pwet';
-                }
-               
-                if(obj.actions.open) { 
-                    console.log(obj);
-                    console.log("binding works");
-                }
-                */
-
+                obj.main.open();
+                var msg = obj.main.obj_status();
+                $scope.$emit('push-message', msg);  
+                $scope.$parent.parentobj.stamina = $scope.$parent.parentobj.stamina - 2; 
             }
         }
       , link: function(scope, element, attrs) {}

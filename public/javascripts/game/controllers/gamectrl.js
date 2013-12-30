@@ -14,20 +14,15 @@ function GameCtrl($scope, $http, Game, Room) {
     $scope.autoclicker = [];
     
     //player stats
-    $scope.action   = 100;
-    $scope.will     = 300;
-    $scope.insanity = 0;
-    $scope.panic    = 0;
-    $scope.stamina  = 10;
+    $scope.parentobj = {};
+    $scope.parentobj.action   = 100;
+    $scope.parentobj.will     = 300;
+    $scope.parentobj.insanity = 0;
+    $scope.parentobj.panic    = 0;
+    $scope.parentobj.stamina  = 10;
 
-    $scope.msgs = [{'text': 'You find yourself in small room. It is empty.'}, {'text': 'What am I doing here?'}];
-
-    $scope.$on('reveal-why', function(ev, val) {
-        $scope.hide_why = false;
-        $scope.panic = $scope.panic + 10;     
-        $scope.insanity = $scope.insanity + 5;     
-    })
-
+    $scope.msgs = [{'text': 'You find yourself in small room. It is empty.'}];
+    
     $scope.$on('delete-note', function(ev, val) {
         $scope.delete_msg(val);
     });
@@ -41,34 +36,20 @@ function GameCtrl($scope, $http, Game, Room) {
         if(~position) $scope.msgs.splice(position, 1);
     }
 
-    $scope.open_door = function() {      
-
-        $scope.add_msg({'text': "You attempt to open the door. It won't budge."});
-        $scope.stamina = $scope.stamina - 1; 
-        /*
-        if($scope.door_attempts == 30) {
-            $scope.hide_scream = true;
-            $scope.add_msg({'text': 'You find a note. <a href="#" ng-click="read_note($event)">read it?</a>'}); 
-        }
- 
-        if($scope.door_attempts == 100) { 
-            $scope.hide_door = true;
-            $scope.stamina = $scope.stamina - 3;
-            $scope.add_msg({'text': 'You are too tired to open the door'}); 
-        }
-        */ 
-    }
-
     $scope.open = function(path_object) {
         
         var find = _.find(Room, function(obj) { 
             return obj.room == path_object;
         });
-        
+    
         if(find) {
             $scope.actions = find;     
         }
        
+    }
+
+    $scope.read_note = function($event) {
+        $event.preventDefault();
     }
 
     $scope.scream = function() { 
@@ -99,11 +80,17 @@ function GameCtrl($scope, $http, Game, Room) {
     //timers
     setInterval(function() { 
 
-        if($scope.will != 0) {
-            $scope.will--;     
+        if($scope.parentobj.will != 0) {
+            $scope.parentobj.will--;     
+
+            if($scope.parentobj.will == 290) { 
+                $scope.add_msg({'text': 'You find a note. <a href="#" ng-click="read_note($event)">read it?</a>'}); 
+            }
+
         } else {
             gameover = true
         }
+
         $scope.$apply(); 
 
     }, 2000);
