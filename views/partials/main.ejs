@@ -23,6 +23,7 @@
         <h3>Room</h3> 
         <p><button class="btn" ng-click="open('door')">door</button></p>
         <p><button class="btn" ng-click="open('window')">window</button></p>
+        <p><button class="btn" ng-click="buttonClick()">{{foo}}</button></p>
     </div>
 
     <div class="col-md-3">
@@ -56,17 +57,3 @@
     <div ng-repeat="d in autoclicker">{{d.type}}</div>
 </div>
 -->
-
-<style>
-#element-to-pop {
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 0 0 25px 5px #999999;
-    color: #111111;
-    display: none;
-    min-width: 450px;
-    min-height: 180px;
-    padding: 20px;
-    display:none;
-}
-</style>

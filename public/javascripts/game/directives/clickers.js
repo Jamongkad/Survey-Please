@@ -12,7 +12,7 @@ angular.module('Directives', [])
       , link: function(scope, element, attrs) {}
     }
 })
-.directive('clicker', function() { 
+.directive('clicker', function(Events) { 
     return {
         restrict: 'E'
       , templateUrl: "/game/buttons"
@@ -27,10 +27,11 @@ angular.module('Directives', [])
             })
 
             $scope.action = function(obj) {
-                obj.main.open();
-                var msg = obj.main.obj_status();
+                var d = obj.main;
+                var msg = d.obj_status();
+                d.open();
                 $scope.$emit('push-message', msg);  
-                $scope.$parent.parentobj.stamina = $scope.$parent.parentobj.stamina - 2; 
+                Events.set_object(d);
             }
         }
       , link: function(scope, element, attrs) {}

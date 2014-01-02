@@ -1,6 +1,7 @@
-function GameCtrl($scope, $http, Game, Room) {
-    
+function GameCtrl($scope, $http, Game, Room, Events) {
+ 
     $scope.ticks = 0;    
+    $scope.foo = "Mathew Super";
 
     //door attempts
     $scope.door_attempts = 0;
@@ -22,6 +23,10 @@ function GameCtrl($scope, $http, Game, Room) {
     $scope.parentobj.stamina  = 10;
 
     $scope.msgs = [{'text': 'You find yourself in small room. It is empty.'}];
+
+    $scope.$on('reveal-object', function(ev, val) {
+        $scope.buttonClick = val.buttonClick;
+    });
     
     $scope.$on('delete-note', function(ev, val) {
         $scope.delete_msg(val);
@@ -49,6 +54,7 @@ function GameCtrl($scope, $http, Game, Room) {
     }
 
     $scope.read_note = function($event) {
+        console.log("Reading from GameCtrl");
         $event.preventDefault();
     }
 
@@ -77,26 +83,23 @@ function GameCtrl($scope, $http, Game, Room) {
     }
     
     var gameover = false
-    //timers
-    setInterval(function() { 
-
+    //timers will
+    var will = setInterval(function() { 
         if($scope.parentobj.will != 0) {
             $scope.parentobj.will--;     
-
-            if($scope.parentobj.will == 290) { 
-                $scope.add_msg({'text': 'You find a note. <a href="#" ng-click="read_note($event)">read it?</a>'}); 
-            }
-
         } else {
             gameover = true
+            clearInterval(will);
         }
-
         $scope.$apply(); 
-
     }, 2000);
+
+    //run events loop
+    Events.set_scope($scope);
 
     Game.gameover = false;
     Game.logic = function() {
+        Events.run();
         if(gameover) {
             bootbox.alert("<h2>You died...</h2>");    
             $scope.msgs = [];
