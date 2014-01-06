@@ -1,4 +1,4 @@
-angular.module('Directives', [])
+angular.module('Directives', ['roomButton', 'console'])
 .directive('autoClicker', function() {    
     return {
         restrict: 'E'     
@@ -26,12 +26,14 @@ angular.module('Directives', [])
                 }    
             })
 
-            $scope.action = function(obj) {
+            $scope.action = function(obj, key) {
                 var d = obj.main;
-                var msg = d.obj_status();
-                d.open();
-                $scope.$emit('push-message', msg);  
-                Events.set_object(d);
+                if(key in obj.actions) {
+                    obj.actions[key]();
+                }
+               
+                //emits to events service
+                $scope.$emit('send-room-object', d);
             }
         }
       , link: function(scope, element, attrs) {}

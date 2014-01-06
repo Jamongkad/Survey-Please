@@ -1,34 +1,39 @@
 angular.module('Events', [])
 .service('Events', function($rootScope) {
 
-    var events= {}
-    events.obj = null;
-    events.controller_scope = null;
-
-    events.set_scope = function(scope) {
-        events.controller_scope = scope;
-    }
-
-    events.set_object = function(obj) {
-        events.obj = obj; 
-    }
-    
+    var events = {}
+ 
     events.run = function() {
-        if(events.obj) {
-            var obj_name = events.obj.constructor.name;
+        /* disabled for the time being
+        $rootScope.$on('send-room-object', function(ev, val) {
+            var obj_name = val.constructor.name;
+            var path_object;
 
             if(obj_name == 'Door' || obj_name == 'Window') {
-                if(events.obj.attempts == 2) {
-                    $rootScope.$broadcast('reveal-object', {
-                        'name': 'desk'
-                      , 'buttonClick': function() { 
-                            events.controller_scope.foo = "Mathew Ultra!!!!!";
-                        } 
-                    });
+                if(val.attempts == 1) { 
+                    //branching goes here...    
+                    path_object = 'desk';
                 } 
+                
+                if(path_object) { 
+                    var object = _.find(branch_rooms, function(obj) { 
+                        return obj.name == path_object;
+                    });
+                    $rootScope.$broadcast('branching', object);
+                }
             }
-        } 
+        }); 
+        */
     }
 
     return events;
 })
+
+var branch_rooms = [
+    { 
+        'name': 'desk'
+      , 'buttonClick': function() { 
+
+        } 
+    }
+];

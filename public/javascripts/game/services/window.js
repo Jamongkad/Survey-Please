@@ -13,7 +13,7 @@ angular.module('Window', [])
 
         this.obj_status = function() {
             if(this.lock)  {
-                return 'You attempt to open the window. But it has accumulated too much rust over the years to be of any use.';
+                return 'You try to open the window. But it has accumulated too much rust over the years to be of any use.';
             } 
         }
     }

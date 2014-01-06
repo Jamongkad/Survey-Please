@@ -1,4 +1,4 @@
-var app = angular.module("Main", ['Services', 'Directives', 'ngRoute', 'console', 'CompileHtml']);
+var app = angular.module("Main", ['Services', 'Directives', 'ngRoute', 'CompileHtml']);
 
 app.config(function($routeProvider) {
     $routeProvider   

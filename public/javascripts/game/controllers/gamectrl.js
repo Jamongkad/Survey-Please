@@ -22,10 +22,11 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     $scope.parentobj.panic    = 0;
     $scope.parentobj.stamina  = 10;
 
-    $scope.msgs = [{'text': 'You find yourself in small room. It is empty.'}];
+    $scope.msgs = [{'text': 'You find yourself in small room.'}];
+    $scope.branches = [];
 
-    $scope.$on('reveal-object', function(ev, val) {
-        $scope.buttonClick = val.buttonClick;
+    $scope.$on('branching', function(ev, val) {
+        $scope.branches.push(val);
     });
     
     $scope.$on('delete-note', function(ev, val) {
@@ -34,7 +35,12 @@ function GameCtrl($scope, $http, Game, Room, Events) {
 
     $scope.$on('push-message', function(ev, val) {
         $scope.add_msg({'text': val});
+        //debug message for scrollbar
+        //$scope.msgs.unshift({'text': val});     
     });
+
+    //run events loop and grab current scope
+    Events.run();
 
     $scope.delete_msg = function(val) { 
         var position = $scope.msgs.indexOf(val);
@@ -50,7 +56,7 @@ function GameCtrl($scope, $http, Game, Room, Events) {
         if(find) {
             $scope.actions = find;     
         }
-       
+        
     }
 
     $scope.read_note = function($event) {
@@ -94,14 +100,10 @@ function GameCtrl($scope, $http, Game, Room, Events) {
         $scope.$apply(); 
     }, 2000);
 
-    //run events loop
-    Events.set_scope($scope);
-
     Game.gameover = false;
     Game.logic = function() {
-        Events.run();
         if(gameover) {
-            bootbox.alert("<h2>You died...</h2>");    
+            bootbox.alert("<h2>Game Over</h2>");    
             $scope.msgs = [];
             $scope.$apply();
         }
