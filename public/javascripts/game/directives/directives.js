@@ -29,7 +29,13 @@ angular.module('Directives', ['roomButton', 'console'])
             $scope.action = function(obj, key) {
                 var d = obj.main;
                 if(key in obj.actions) {
-                    obj.actions[key]();
+
+                    var func = obj.actions[key];
+
+                    if(_.isFunction(func)) {
+                        func.call();     
+                    }
+                   
                 }
                
                 //emits to events service
