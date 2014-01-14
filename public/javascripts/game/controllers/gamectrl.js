@@ -31,13 +31,7 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     $scope.$on('send-order', function(ev, val) {
         $scope.actions = val;
     });
-    
-    /*
-    $scope.$on('branching', function(ev, val) {
-        $scope.branches.push(val);
-    });
-    */
-    
+     
     $scope.$on('delete-note', function(ev, val) {
         $scope.delete_msg(val);
     });
@@ -47,9 +41,6 @@ function GameCtrl($scope, $http, Game, Room, Events) {
         //debug message for scrollbar
         $scope.msgs.unshift({'text': val + "<br/>"});     
     });
-
-    //run events loop and grab current scope
-    Events.run();
 
     $scope.delete_msg = function(val) { 
         var position = $scope.msgs.indexOf(val);
@@ -80,6 +71,9 @@ function GameCtrl($scope, $http, Game, Room, Events) {
         }
         $scope.$apply(); 
     }, 2000);
+
+    //run events loop and grab current scope
+    Events.run();
 
     Game.gameover = false;
     Game.logic = function() {

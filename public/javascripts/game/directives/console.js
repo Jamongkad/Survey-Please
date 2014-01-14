@@ -3,10 +3,12 @@ angular.module('console', [])
     return {
         restrict: 'A'     
       , link: function(scope, element, attrs) {
+            /*
             scope.$on("changes", function(ev, val) {
                 $(element).tinyscrollbar();     
                 $(element).tinyscrollbar_update();
             })
+            */
         }
     }    
 })

@@ -17,16 +17,16 @@ angular.module('Desk', [])
             if(me.lamp == "off") {
                 msg = "You struggle to read the words printed on the paper. It is much too dim.";
             } else { 
-                msg = "You read the piece of paper, it is a chat log of some sort.<br/><br/>" + 
-                          "[o__o]: Hey are you there? <br/>" + 
-                          "[o__o]: I've been talking to [^__^] recently. <br/>" + 
-                          "[*__*]: Oh? how she doing these days?<br/>" + 
-                          "[o__o]: She's been better. Looks like she's checking out of rehab in the next couple of days. <br/>" + 
-                          "[*__*]: Oh wow so are we looking to meet up with her for coffee? <br/>" + 
-                          "[o__o]: I've been planning to. Hey do me a favor and don't mention [O__O] to her okay? <br/>" +
-                          "[*__*]: Alright although he's going to found out eventually. <br/>" + 
-                          "[o__o]: Better he find out himself than coming from us. <br/>" + 
-                          "[*__*]: .....okay.";
+                msg = "You read the piece of paper. It is a chat log of some sort.<br/>" + 
+                      "[o__o]: Hey are you there? <br/>" + 
+                      "[o__o]: I've been talking to [^__^] recently. <br/>" + 
+                      "[*__*]: Oh? how she doing these days?<br/>" + 
+                      "[o__o]: She's been better. Looks like she's checking out of rehab in the next couple of days. <br/>" + 
+                      "[*__*]: Oh wow so are we looking to meet up with her for coffee? <br/>" + 
+                      "[o__o]: I've been planning to. Hey do me a favor and don't mention [O__O] to her okay? <br/>" +
+                      "[*__*]: Alright although he's going to found out eventually. <br/>" + 
+                      "[o__o]: Better he find out himself than coming from us. <br/>" + 
+                      "[*__*]: .....okay.";
             } 
             $rootScope.$broadcast('push-message', msg);  
         }
@@ -36,9 +36,8 @@ angular.module('Desk', [])
             if(me.lamp == "off") {
                 msg = "You struggle to read the letter. It is much too dim.";
             } else { 
-               msg = "You open the envelope. Inside it contains a letter. " + 
-                     "Crudely written, the contents of the letter, sends a chill down your spine. <br/>" + 
-                     '"Your killed her..."' 
+                msg = 'You open the envelope. Inside it contains a letter. ' + 
+                      'Crudely written, the contents of the letter, sends a chill down your spine. "You killed her..."'
             }
 
             $rootScope.$broadcast('push-message', msg);  

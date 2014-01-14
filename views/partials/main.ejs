@@ -3,6 +3,7 @@
 
     jQuery(function($) { 
         $('.viewport').height($(document).height() - 160); 
+        $('#notifyGradient').css({'top': $('.viewport').height() - 100 + "px"});
     });
 
 </script>
@@ -10,6 +11,7 @@
 <div class="row">
     <div class="col-md-8 col-sm-6 col-xs-12">
         <div console-box id="scrollbar1">
+            <!--
             <div class="scrollbar">
                 <div class="track">
                     <div class="thumb">
@@ -17,12 +19,14 @@
                     </div>
                 </div>
             </div>
+            -->
             <div class="viewport">
                 <div class="overview">
                     <p ng-repeat="msg in msgs track by $index"> 
                         <console m="msg"></console>
                     </p>
                 </div>
+                <div id="notifyGradient"></div>
             </div>
         </div>
         <command-line></command-line>

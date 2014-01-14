@@ -14,16 +14,17 @@ angular.module('commandline', [])
                 var command = commands[0];
                 var object = commands[1];
 
-                if($scope.command != "" && object && (command == "touch" || command == "inspect")) { 
-
-                    var find = _.find(Room, function(obj) { 
-                        if(object == "room") {
-                            return obj.room == "area";
-                        }
-                        return obj.room == object;
-                    });
-                    //$(".viewport").highlight(object, {element: 'a'});
-                    $scope.$emit('send-order', find);
+                if($scope.command != "" && object && (command == "touch" || command == "inspect")) {  
+                    if(command == "inspect") { 
+                        var find = _.find(Room, function(obj) { 
+                            if(object == "room") {
+                                return obj.room == "area";
+                            }
+                            return obj.room == object;
+                        });
+                        //$(".viewport").highlight(object, {element: 'a'});
+                        $scope.$emit('send-order', find);
+                    }
                 }
                 
                 $scope.command = "";

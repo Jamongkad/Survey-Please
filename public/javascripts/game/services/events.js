@@ -3,37 +3,19 @@ angular.module('Events', [])
 
     var events = {}
  
-    events.run = function() {
-        /* disabled for the time being
-        $rootScope.$on('send-room-object', function(ev, val) {
-            var obj_name = val.constructor.name;
-            var path_object;
-
-            if(obj_name == 'Door' || obj_name == 'Window') {
-                if(val.attempts == 1) { 
-                    //branching goes here...    
-                    path_object = 'desk';
-                } 
-                
-                if(path_object) { 
-                    var object = _.find(branch_rooms, function(obj) { 
-                        return obj.name == path_object;
-                    });
-                    $rootScope.$broadcast('branching', object);
-                }
+    events.run = function() { 
+        var cnt = 0;
+        var knock = setInterval(function() { 
+            cnt = cnt + 1;
+            if(cnt == 50) {
+                console.log("reset count!");
+                cnt = 0;
+                knock = null;
             }
-        }); 
-        */
+            console.log("knock knock " + cnt);
+        }, 2000);
     }
 
     return events;
 })
 
-var branch_rooms = [
-    { 
-        'name': 'desk'
-      , 'buttonClick': function() { 
-
-        } 
-    }
-];
