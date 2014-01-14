@@ -1,14 +1,13 @@
-
 /**
  * Module dependencies.
  */
-
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , game = require('./routes/game')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , mingy = require('mingy');
 
 var app = express();
 

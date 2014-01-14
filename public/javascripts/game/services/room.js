@@ -1,28 +1,28 @@
-angular.module('Room', ['Window', 'Door', 'Desk'])
-.service('Room', function($rootScope, Window, Door, Desk) { 
+angular.module('Room', ['Area', 'Window', 'Door', 'Desk'])
+.service('Room', function($rootScope, Area, Window, Door, Desk) { 
 
     //objects inside the room
     var room = [
-        {   'room': 'window'
-          , 'desc': 'An old window that looks like it has seen better days.'
+        {   'room': 'area'
+          , 'main': Area
+        }
+      , {   'room': 'window'
           , 'main': Window
           , 'actions': {
-                'open': false
+                'open window': Window.open
             } 
         }
       , {   'room': 'door'
-          , 'desc': 'A wooden door stands infront of you.'
           , 'main': Door
           , 'actions': {
-                'open': true
+                'open door': Door.open
             } 
         }
       , {  'room': 'desk' 
-          , 'desc': 'A simple mahogany desk. Several items are strewn on the surface.'
           , 'main': Desk
           , 'actions': {
-                'chat log': Desk.read_chat
-              , 'letter': Desk.read_letter
+                'piece of paper': Desk.read_paper
+              , 'envelope': Desk.read_letter
               , 'desk lamp': Desk.operate_lamp
             }  
         }

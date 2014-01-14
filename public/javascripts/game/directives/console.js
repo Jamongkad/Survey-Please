@@ -15,12 +15,19 @@ angular.module('console', [])
         restrict: 'E'     
       , templateUrl: '/game/console_item'
       , scope: { m: "=m" }
+      , controller: function($scope, $element, $attrs) { 
+        }
       , link: function($scope, element, attrs) { 
+            $scope.$watch('m', function(val) {
+                $scope.$emit("changes");
+            }); 
+            /* kiv
             $scope.$watch('m', function(val) {
                 element.html($scope.m.text);     
                 $compile(element.contents())($scope.$parent);
                 $scope.$emit("changes");
             }); 
+            */
         }
     }
 })

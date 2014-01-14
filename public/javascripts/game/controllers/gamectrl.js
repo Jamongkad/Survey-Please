@@ -1,7 +1,7 @@
 function GameCtrl($scope, $http, Game, Room, Events) {
  
     $scope.ticks = 0;    
-    $scope.foo = "Mathew Super";
+    $scope.foo = "Mathew Super"; 
 
     //door attempts
     $scope.door_attempts = 0;
@@ -22,21 +22,30 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     $scope.parentobj.panic    = 0;
     $scope.parentobj.stamina  = 10;
 
-    $scope.msgs = [{'text': 'You find yourself in small room.'}];
-    $scope.branches = [];
+    $scope.msgs = [
+        {'text': 'You find yourself in small <i>room</i>.'}    
+    ];
 
+    $scope.branches = [];
+    
+    $scope.$on('send-order', function(ev, val) {
+        $scope.actions = val;
+    });
+    
+    /*
     $scope.$on('branching', function(ev, val) {
         $scope.branches.push(val);
     });
+    */
     
     $scope.$on('delete-note', function(ev, val) {
         $scope.delete_msg(val);
     });
 
     $scope.$on('push-message', function(ev, val) {
-        $scope.add_msg({'text': val});
+        //$scope.add_msg({'text': val});
         //debug message for scrollbar
-        //$scope.msgs.unshift({'text': val});     
+        $scope.msgs.unshift({'text': val + "<br/>"});     
     });
 
     //run events loop and grab current scope
@@ -45,36 +54,8 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     $scope.delete_msg = function(val) { 
         var position = $scope.msgs.indexOf(val);
         if(~position) $scope.msgs.splice(position, 1);
-    }
+    } 
 
-    $scope.open = function(path_object) {
-        
-        var find = _.find(Room, function(obj) { 
-            return obj.room == path_object;
-        });
-    
-        if(find) {
-            $scope.actions = find;     
-        }
-        
-    }
-
-    $scope.read_note = function($event) {
-        console.log("Reading from GameCtrl");
-        $event.preventDefault();
-    }
-
-    $scope.scream = function() { 
-        $scope.add_msg({'text': "You scream for help. Nobody seems to be there."})
-        $scope.panic = $scope.panic + 5;
-        $scope.hide_scream = false;
-    }
-
-    $scope.why = function() { 
-        $scope.add_msg({'text': "Killed her? What are you talking about? I didn't kill anyone"});
-        $scope.hide_why = true;
-    }
-    
     //deprecated
     $scope.trim_msgs = function() { 
         if($scope.msgs.length >= 10) {

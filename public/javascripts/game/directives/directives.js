@@ -1,4 +1,4 @@
-angular.module('Directives', ['roomButton', 'console'])
+angular.module('Directives', ['roomButton', 'console', 'commandline'])
 .directive('autoClicker', function() {    
     return {
         restrict: 'E'     
@@ -22,26 +22,39 @@ angular.module('Directives', ['roomButton', 'console'])
             $scope.$watch('d', function() {
                 if($scope.d)  {
                     //room desc is pushed back to GameCtrl for notification rendering
-                    $scope.$emit('push-message', $scope.d.desc);  
+                    $scope.$emit('push-message', $scope.d.main.desc);
                 }    
             })
 
-            $scope.action = function(obj, key) {
-                var d = obj.main;
-                if(key in obj.actions) {
+            $scope.action = function(key) {
+                var d = $scope.d;
 
-                    var func = obj.actions[key];
+                if(key in d.actions) {
+
+                    var func = d.actions[key];
 
                     if(_.isFunction(func)) {
                         func.call();     
-                    }
-                   
-                }
-               
+                    }                   
+                } 
                 //emits to events service
                 $scope.$emit('send-room-object', d);
+
             }
         }
       , link: function(scope, element, attrs) {}
+    }
+})
+.directive('ngEnter', function() {
+    return function(scope, element, attrs) {
+        element.bind("keydown keypress", function(event) {
+            if(event.which === 13) {
+                scope.$apply(function(){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
     }
 })

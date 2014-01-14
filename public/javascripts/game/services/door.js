@@ -3,23 +3,16 @@ angular.module('Door', [])
     //Door logic
     function Door() { 
 
-        this.lock = true;
-        this.attempts = 0;
+        var lock = true;
+        var attempts = 0;
+        this.desc = 'A wooden door.';
 
         this.open = function() {
-            console.log(this.lock);
-            console.log(this.attempts++);
+            var msg = "You walk across the room to open the door. Upon reaching it you twist the knob to no avail. The door is lock.";
+            $rootScope.$broadcast('push-message', msg);  
         }
 
-        this.obj_status = function() {
-            if(this.lock)  {
-                if(this.attempts > 0) {
-                    return 'You attempt to open the door again. It is still locked.';     
-                } else {
-                    return 'You attempt to open the door. It is locked.';     
-                }             
-            } 
-        }
+        this.obj_status = function() {}
     }
 
     return new Door();

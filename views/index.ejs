@@ -13,9 +13,11 @@
     <script src="javascripts/jquery.bpopup.min.js"></script>
     <script src="javascripts/underscore.js"></script>
     <script src="javascripts/angular-route.js"></script>
+    <script src="javascripts/angular-sanitize.js"></script>
     <script src="javascripts/bootstrap.js"></script>
     <script src="javascripts/bootbox.js"></script>
     <script src="javascripts/jquery.tinyscrollbar.js"></script>
+    <script src="javascripts/jquery.highlight.js"></script>
    
     <script src="javascripts/game/main.js"></script>
 
@@ -24,9 +26,11 @@
 
     <script src="javascripts/game/directives/directives.js"></script>
     <script src="javascripts/game/directives/console.js"></script>
+    <script src="javascripts/game/directives/commandline.js"></script>
     <script src="javascripts/game/directives/roombutton.js"></script>
     <script src="javascripts/game/directives/angular.compilehtml.js"></script>
 
+    <script src="javascripts/game/services/area.js"></script>
     <script src="javascripts/game/services/window.js"></script>
     <script src="javascripts/game/services/door.js"></script>
     <script src="javascripts/game/services/desk.js"></script>
@@ -34,12 +38,11 @@
     <script src="javascripts/game/services/game.js"></script>
     <script src="javascripts/game/services/room.js"></script>
 
-
-        <style>
-            body {
-                padding-top: 60px;     
-            }
-        </style>
+    <style>
+        body {
+            padding-top: 60px;     
+        }
+    </style>
   </head>
   <body ng-app="Main">
         <div class="navbar navbar-default navbar-fixed-top">
