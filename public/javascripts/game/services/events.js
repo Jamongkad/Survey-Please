@@ -4,6 +4,7 @@ angular.module('Events', [])
     var events = {}
  
     events.run = function() { 
+        /*
         var cnt = 0;
         var knock = setInterval(function() { 
             cnt = cnt + 1;
@@ -14,6 +15,7 @@ angular.module('Events', [])
             }
             console.log("knock knock " + cnt);
         }, 2000);
+        */
     }
 
     return events;

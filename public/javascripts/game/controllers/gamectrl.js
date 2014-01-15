@@ -11,22 +11,31 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     $scope.hide_why    = true;
     $scope.hide_door   = false;
     
-    //autoclick array container
-    $scope.autoclicker = [];
+    //action repository so we can record the players actions
+    $scope.playeractions = [];
     
     //player stats
     $scope.parentobj = {};
-    $scope.parentobj.action   = 100;
     $scope.parentobj.will     = 300;
     $scope.parentobj.insanity = 0;
     $scope.parentobj.panic    = 0;
-    $scope.parentobj.stamina  = 10;
 
     $scope.msgs = [
-        {'text': 'You find yourself in small <i>room</i>.'}    
+        {'text': 'You find your<i>self</i> in small <i>room</i>.'}    
     ];
 
     $scope.branches = [];
+
+    $scope.$on('change-player-mode', function(ev, val) {
+        if(_.findWhere($scope.playeractions, val) == null) { 
+            for(key in $scope.parentobj) {
+                if(val.hasOwnProperty(key)) {
+                    $scope.parentobj[key] = $scope.parentobj[key] + val[key];
+                }
+            }
+            $scope.playeractions.unshift(val);     
+        }
+    });  
     
     $scope.$on('send-order', function(ev, val) {
         $scope.actions = val;

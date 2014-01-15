@@ -1,9 +1,15 @@
-angular.module('Room', ['Area', 'Window', 'Door', 'Desk'])
-.service('Room', function($rootScope, Area, Window, Door, Desk) { 
+angular.module('Room', ['Area', 'Window', 'Door', 'Desk', 'Player'])
+.service('Room', function($rootScope, Area, Window, Door, Desk, Player) { 
 
     //objects inside the room
     var room = [
-        {   'room': 'area'
+        {   'room': 'self'
+          , 'main': Player
+          , 'actions': {
+                'calm down': Player.calm_down
+            }
+        }
+      , {   'room': 'area'
           , 'main': Area
         }
       , {   'room': 'window'

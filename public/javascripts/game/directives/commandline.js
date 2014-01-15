@@ -23,6 +23,7 @@ angular.module('commandline', [])
                             return obj.room == object;
                         });
                         //$(".viewport").highlight(object, {element: 'a'});
+                        console.log(find);
                         $scope.$emit('send-order', find);
                     }
                 }

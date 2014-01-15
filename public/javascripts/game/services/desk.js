@@ -18,6 +18,7 @@ angular.module('Desk', [])
                 msg = "You struggle to read the words printed on the paper. It is much too dim.";
             } else { 
                 msg = "You read the piece of paper. It is a chat log of some sort.<br/>" + 
+                      "<blockquote>" + 
                       "[o__o]: Hey are you there? <br/>" + 
                       "[o__o]: I've been talking to [^__^] recently. <br/>" + 
                       "[*__*]: Oh? how she doing these days?<br/>" + 
@@ -26,7 +27,10 @@ angular.module('Desk', [])
                       "[o__o]: I've been planning to. Hey do me a favor and don't mention [O__O] to her okay? <br/>" +
                       "[*__*]: Alright although he's going to found out eventually. <br/>" + 
                       "[o__o]: Better he find out himself than coming from us. <br/>" + 
-                      "[*__*]: .....okay.";
+                      "[*__*]: .....okay." + 
+                      "</blockquote>";
+
+                $rootScope.$broadcast('change-player-mode', {'insanity': 5, 'origin': 'desk'});  
             } 
             $rootScope.$broadcast('push-message', msg);  
         }
@@ -37,7 +41,12 @@ angular.module('Desk', [])
                 msg = "You struggle to read the letter. It is much too dim.";
             } else { 
                 msg = 'You open the envelope. Inside it contains a letter. ' + 
-                      'Crudely written, the contents of the letter, sends a chill down your spine. "You killed her..."'
+                      'Crudely written, the contents of the letter, sends a chill down your spine. ' + 
+                      "<blockquote>" + 
+                      "You killed her." + 
+                      "</blockquote>";
+
+                $rootScope.$broadcast('change-player-mode', {'panic': 10, 'origin': 'desk'});  
             }
 
             $rootScope.$broadcast('push-message', msg);  

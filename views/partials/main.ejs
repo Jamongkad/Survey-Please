@@ -11,15 +11,6 @@
 <div class="row">
     <div class="col-md-8 col-sm-6 col-xs-12">
         <div console-box id="scrollbar1">
-            <!--
-            <div class="scrollbar">
-                <div class="track">
-                    <div class="thumb">
-                        <div class="end"></div>
-                    </div>
-                </div>
-            </div>
-            -->
             <div class="viewport">
                 <div class="overview">
                     <p ng-repeat="msg in msgs track by $index"> 
@@ -33,12 +24,10 @@
     </div>
 
     <div class="col-xs-3 col-md-4"> 
-
-        <h3>Status</h3>
+        <h3>You</h3>
         <p>Will: {{parentobj.will}}</p>
         <p>Panic: {{parentobj.panic}}</p>
         <p>Insanity: {{parentobj.insanity}}</p>
-        <p>Stamina: {{parentobj.stamina}}</p>
     </div>
 
     <div class="col-xs-3 col-md-4">
