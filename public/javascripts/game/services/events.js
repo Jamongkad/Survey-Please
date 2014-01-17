@@ -14,8 +14,9 @@ angular.module('Events', [])
                 knock = null;
             }
             console.log("knock knock " + cnt);
-        }, 2000);
+        }, 1000);
         */
+
     }
 
     return events;

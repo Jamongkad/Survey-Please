@@ -15,7 +15,7 @@ angular.module('Desk', [])
             //emits to gamectrl
             var msg;
             if(me.lamp == "off") {
-                msg = "You struggle to read the words printed on the paper. It is much too dim.";
+                msg = "The light coming from the window is not bright enough to illuminate the entire room. You struggle to read the words printed on the paper. "
             } else { 
                 msg = "You read the piece of paper. It is a chat log of some sort.<br/>" + 
                       "<blockquote>" + 
@@ -31,6 +31,7 @@ angular.module('Desk', [])
                       "</blockquote>";
 
                 $rootScope.$broadcast('change-player-mode', {'insanity': 5, 'origin': 'desk'});  
+                $rootScope.$broadcast('push-message', "<i>You've lost some grip on reality.</i>");  
             } 
             $rootScope.$broadcast('push-message', msg);  
         }
@@ -38,7 +39,7 @@ angular.module('Desk', [])
         this.read_letter = function() { 
 
             if(me.lamp == "off") {
-                msg = "You struggle to read the letter. It is much too dim.";
+                msg = "The light coming from the window is not bright enough to illuminate the entire room. You struggle to read the contents of the envelope. "
             } else { 
                 msg = 'You open the envelope. Inside it contains a letter. ' + 
                       'Crudely written, the contents of the letter, sends a chill down your spine. ' + 
@@ -47,6 +48,7 @@ angular.module('Desk', [])
                       "</blockquote>";
 
                 $rootScope.$broadcast('change-player-mode', {'panic': 10, 'origin': 'desk'});  
+                $rootScope.$broadcast('push-message', "<i>The hairs on the back of your neck begin to stand.</i>");  
             }
 
             $rootScope.$broadcast('push-message', msg);  

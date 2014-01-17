@@ -5,7 +5,7 @@ angular.module('Window', [])
 
         var lock = true;
         var attempts = 0;
-        this.desc = 'The frosting on the window prevents you from looking outside. It is enough, for the mean time, to provide light for the entire room.';
+        this.desc = 'The frosting on the window prevents you from looking outside. However it is enough, for the mean time, to provide light for the entire room.';
 
         this.open = function() { 
             var msg = "You try with all your might to no avail. The window won't budge.";

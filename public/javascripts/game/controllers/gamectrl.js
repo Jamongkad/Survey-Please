@@ -36,6 +36,19 @@ function GameCtrl($scope, $http, Game, Room, Events) {
             $scope.playeractions.unshift(val);     
         }
     });  
+
+    $scope.$on('calm-player', function(ev, val) {
+        //just do calculations here
+        if($scope.parentobj.insanity > 0)  {
+            $scope.parentobj.insanity = $scope.parentobj.insanity - 1; 
+        }
+
+        if($scope.parentobj.panic > 0)  {
+            $scope.parentobj.panic = $scope.parentobj.panic - 1; 
+        }
+
+        $scope.parentobj.will = $scope.parentobj.will + 1;
+    });
     
     $scope.$on('send-order', function(ev, val) {
         $scope.actions = val;
@@ -78,11 +91,14 @@ function GameCtrl($scope, $http, Game, Room, Events) {
             gameover = true
             clearInterval(will);
         }
+        
+        //if player starts tinkering with shit
+        if($scope.playeractions.length > 0) {  
+            console.log("mathew");
+        }
+
         $scope.$apply(); 
     }, 2000);
-
-    //run events loop and grab current scope
-    Events.run();
 
     Game.gameover = false;
     Game.logic = function() {

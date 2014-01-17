@@ -5,10 +5,10 @@ angular.module('Door', [])
 
         var lock = true;
         var attempts = 0;
-        this.desc = 'A wooden door.';
+        this.desc = 'Across the room lies a wooden door.';
 
         this.open = function() {
-            var msg = "You walk across the room to open the door. Upon reaching it you twist the knob to no avail. The door is lock.";
+            var msg = "You walk across the room to open the door. Upon reaching it, you twist the knob, to only find out it is locked.";
             $rootScope.$broadcast('push-message', msg);  
         }
 

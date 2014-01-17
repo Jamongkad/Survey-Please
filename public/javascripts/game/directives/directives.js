@@ -26,13 +26,12 @@ angular.module('Directives', ['roomButton', 'console', 'commandline'])
                 }    
             })
 
+            //fires object action...
             $scope.action = function(key) {
                 var d = $scope.d;
 
                 if(key in d.actions) {
-
                     var func = d.actions[key];
-
                     if(_.isFunction(func)) {
                         func.call();     
                     }                   
