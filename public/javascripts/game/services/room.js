@@ -1,5 +1,5 @@
-angular.module('Room', ['Area', 'Window', 'Door', 'Desk', 'Player'])
-.service('Room', function($rootScope, Area, Window, Door, Desk, Player) { 
+angular.module('Room', ['Area', 'Window', 'Door', 'Desk', 'Player', 'Note'])
+.service('Room', function($rootScope, Area, Window, Door, Desk, Player, Note) { 
 
     //objects inside the room
     var room = [
@@ -31,6 +31,9 @@ angular.module('Room', ['Area', 'Window', 'Door', 'Desk', 'Player'])
               , 'envelope': Desk.read_letter
               , 'desk lamp': Desk.operate_lamp
             }  
+        }
+      , {   'room': 'note' 
+          , 'main': Note
         }
     ];
 

@@ -92,11 +92,6 @@ function GameCtrl($scope, $http, Game, Room, Events) {
             clearInterval(will);
         }
         
-        //if player starts tinkering with shit
-        if($scope.playeractions.length > 0) {  
-            console.log("mathew");
-        }
-
         $scope.$apply(); 
     }, 2000);
 
@@ -107,6 +102,16 @@ function GameCtrl($scope, $http, Game, Room, Events) {
             $scope.msgs = [];
             $scope.$apply();
         }
+
+        //if player starts tinkering with shit
+        if($scope.playeractions.length >= 2) {  
+            $scope.add_msg({
+                'text': 'A knock on the door startles you. As you rush to find out. You notice a <i>note</i> and plate of food and water at the foot of the door. ' + 
+                        'How did they appear through a solid wooden door is a mystery. ' + 
+                        'All you know is your captor is intent on keeping you here for the time being. '
+            })
+        }
+
         Game.gameover = gameover;
     }
    
