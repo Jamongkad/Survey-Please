@@ -22,6 +22,7 @@ function GameCtrl($scope, $http, Game, Room, Events) {
 
     $scope.msgs = [
         {'text': 'You find your<i>self</i> in small <i>room</i>.'}    
+     ,  {'text': 'You must find a way to escape before your will runs dry and you go totally insane.'}
     ];
 
     $scope.branches = [];
@@ -61,7 +62,7 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     $scope.$on('push-message', function(ev, val) {
         //$scope.add_msg({'text': val});
         //debug message for scrollbar
-        $scope.msgs.unshift({'text': val + "<br/>"});     
+        $scope.msgs.unshift({'text': val });   
     });
 
     $scope.delete_msg = function(val) { 
@@ -90,8 +91,7 @@ function GameCtrl($scope, $http, Game, Room, Events) {
         } else {
             gameover = true
             clearInterval(will);
-        }
-        
+        } 
         $scope.$apply(); 
     }, 2000);
 
@@ -103,13 +103,13 @@ function GameCtrl($scope, $http, Game, Room, Events) {
             $scope.$apply();
         }
 
-        //if player starts tinkering with shit
         if($scope.playeractions.length >= 2) {  
             $scope.add_msg({
-                'text': 'A knock on the door startles you. As you rush to find out. You notice a <i>note</i> and plate of food and water at the foot of the door. ' + 
+                'text': 'A knock on the door startles you. As you rush to find out who it is. ' + 
+                        'You find a <i>note</i> and a plate of food and water at the foot of the door. ' + 
                         'How did they appear through a solid wooden door is a mystery. ' + 
-                        'All you know is your captor is intent on keeping you here for the time being. '
-            })
+                        'All you know, is your captor is intent on keeping you here for the time being. '
+            });
         }
 
         Game.gameover = gameover;
