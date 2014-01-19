@@ -16,9 +16,8 @@ angular.module('Door', [])
             } else {
                 var msg = "You walk across the room to open the door. Upon reaching it. You twist the knob. It opens..." + 
                           "much to your dismay a concrete wall stands infront of you. <br/>" + 
-                          "<i>You scream in agony as you feel a little bit more hopeless.</i>";
+                          "A small inscription can be made out on the surface of the concrete wall. It reads 'Look <i>up</i>'.";
 
-                $rootScope.$broadcast('change-player-mode', {'will': 10, 'origin': 'door'});  
                 $rootScope.$broadcast('push-message', msg);   
             }
         }
