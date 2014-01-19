@@ -19,15 +19,15 @@ angular.module('Desk', [])
             } else { 
                 msg = "You read the piece of paper. It is a chat log of some sort.<br/>" + 
                       "<blockquote>" + 
-                      "[o__o]: Hey are you there? <br/>" + 
-                      "[o__o]: I've been talking to [^__^] recently. <br/>" + 
-                      "[*__*]: Oh? how she doing these days?<br/>" + 
-                      "[o__o]: She's been better. Looks like she's checking out of rehab in the next couple of days. <br/>" + 
-                      "[*__*]: Oh wow so are we looking to meet up with her for coffee? <br/>" + 
-                      "[o__o]: I've been planning to. Hey do me a favor and don't mention [O__O] to her okay? <br/>" +
-                      "[*__*]: Alright although he's going to found out eventually. <br/>" + 
-                      "[o__o]: Better he find out himself than coming from us. <br/>" + 
-                      "[*__*]: .....okay." + 
+                      "L: Hey are you there? <br/>" + 
+                      "L: I've been talking to M recently. <br/>" + 
+                      "K: Oh? how she doing these days?<br/>" + 
+                      "L: She's been better. Looks like she's checking out of rehab in the next couple of days. <br/>" + 
+                      "K: Oh wow so are we looking to meet up with her for coffee? <br/>" + 
+                      "L: I've been planning to. Hey do me a favor and don't mention [O__O] to her okay? <br/>" +
+                      "K: Alright although he's going to found out eventually. <br/>" + 
+                      "L: Better he find out himself than coming from us. <br/>" + 
+                      "K: .....okay." + 
                       "</blockquote>";
 
                 $rootScope.$broadcast('change-player-mode', {'insanity': 5, 'origin': 'desk'});  

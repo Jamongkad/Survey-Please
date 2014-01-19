@@ -22,7 +22,7 @@ function GameCtrl($scope, $http, Game, Room, Events) {
 
     $scope.msgs = [
         {'text': 'You find your<i>self</i> in small <i>room</i>.'}    
-     ,  {'text': 'You must find a way to escape before your will runs dry and you go totally insane.'}
+     ,  {'text': 'You must find a way to escape before your will runs dry and you go totally insane. '}
     ];
 
     $scope.branches = [];
