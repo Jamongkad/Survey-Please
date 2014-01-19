@@ -9,7 +9,7 @@ angular.module('Note', [])
             var msg = "<blockquote>" + 
                       "You are a murderer. I am going to make you suffer the way you made HER suffer. " +
                       "You must be wondering why you're here? I suppose the game won't be as fun without giving you a chance to escape your predicament. " + 
-                      "So go ahead...the door is unlocked. " + 
+                      "So go ahead...the <i>door</i> is unlocked. " + 
                       "</blockquote>";
 
             $rootScope.door.lock = false;
@@ -19,18 +19,20 @@ angular.module('Note', [])
             //hoooooleeeeeee shiiiiiiiit
             /*
             var r = "door";
-
-            var find = _.find($rootScope.room, function(obj) { 
+            var door = _.find($rootScope.room, function(obj) { 
                 return obj.room == r;
             });
 
-            find.main.fart = function() { 
-                $rootScope.$broadcast('push-message', "You fart at that fat Martie!");  
+            door.main.read = function() { 
+                var inscription = "<blockquote>" + 
+                                  "You want to learn more? Look up at the <i>ceiling</i>" + 
+                                  "</blockquote>"; 
+
+                $rootScope.$broadcast('push-message', inscription);  
             }
 
-            find.actions["fart at martie"] = find.main.fart; 
+            door.actions["read inscription"] = door.main.read; 
             */
-
         }
     }
 

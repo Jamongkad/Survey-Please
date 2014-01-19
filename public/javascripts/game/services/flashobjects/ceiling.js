@@ -7,8 +7,7 @@ angular.module('Ceiling', [])
                     "You want to panic but you feel all your emotions drain. You to scream but the air around you is so thick. " +
                     "Your breathing becomes heavy and you fall on your knees. You feel your strength slowly draining away. " +
                     "The world around you begins to fade as the abyss draws closer to you. The slow creeping of the darkness is maddening. " +
-                    "As the abyss creeps closer your vision begins to fade into darkness. <br/><br/>" + 
-                    "Then...nothing.";
+                    "As the abyss creeps closer your vision begins to fade into darkness. Then nothing.";
 
         this.wake_up = function() {
             
