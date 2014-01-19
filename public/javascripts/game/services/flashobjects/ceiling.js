@@ -1,6 +1,6 @@
-angular.module('Up', [])
-.service('Up', function($rootScope) { 
-    function Up() {
+angular.module('Ceiling', [])
+.service('Ceiling', function($rootScope) { 
+    function Ceiling() {
         this.desc = "You slowly lift your eyes. You are shocked to find the room's ceiling transform itself to black nothingness. " + 
                     "It is as if you are looking into a portal that is devoid of light. Silent and foreboding. " +
                     "As you continue to stare into the abyss you cannot help but notice the ceiling closing in on you.  " +
@@ -15,5 +15,5 @@ angular.module('Up', [])
         }
     }
 
-    return new Up();
+    return new Ceiling();
 })
