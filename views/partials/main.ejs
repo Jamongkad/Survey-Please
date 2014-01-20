@@ -1,11 +1,9 @@
 <script>
     //resize viewport
-
     jQuery(function($) { 
         $('.viewport').height($(document).height() - 160); 
         $('#notifyGradient').css({'top': $('.viewport').height() - 100 + "px"});
     });
-
 </script>
 
 <div class="row">
@@ -35,15 +33,3 @@
         <clicker d="actions"></clicker>
     </div>
 </div>
-
-<!--
-<div class="col-md-4">
-    <div ng-show="buy">
-        <auto-clicker></auto-clicker> 
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div ng-repeat="d in autoclicker">{{d.type}}</div>
-</div>
--->

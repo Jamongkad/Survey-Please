@@ -2,7 +2,7 @@ angular.module('Services', ['Room', 'Events'])
 .service('Game', function($rootScope) { 
     var Game = {};
 
-    Game.fps = 30;
+    Game.fps = 10;
     Game.gameover;
     Game.logic;
     Game.initialize = function() {};

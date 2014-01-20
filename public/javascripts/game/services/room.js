@@ -3,17 +3,6 @@ angular.module('Room', [
 ])
 .service('Room', function($rootScope, Area, Window, Door, Desk, Player, Note, Ceiling, Bed, Closet, Bathroom) { 
 
-    //bind room objects to rootScope so that other services may access them.
-    $rootScope.area = Area;
-    $rootScope.frost_window = Window;
-    $rootScope.door   = Door;
-    $rootScope.desk   = Desk;
-    $rootScope.player = Player;
-    $rootScope.note   = Note;
-    $rootScope.ceiling     = Ceiling;
-    $rootScope.bed    = Bed;
-    $rootScope.bathroom = Bathroom;
-
     //objects inside the room
     var room = [
         {   'room': 'self'
@@ -72,13 +61,25 @@ angular.module('Room', [
       , {   'room': 'bathroom' 
           , 'main': Bathroom
           , 'actions': {
-                'open bathroom door': Bathroom.open_bathroom_door
+                'mirror': Bathroom.check_mirror
+              , 'medicine cabinet': Bathroom.check_cabinet
+              , 'shower': Bathroom.check_shower
             }
         }
       , 
     ];
 
+    //bind room objects to rootScope so that other services may access them.
     $rootScope.room = room;
+    $rootScope.frost_window = Window;
+    $rootScope.area     = Area;
+    $rootScope.door     = Door;
+    $rootScope.desk     = Desk;
+    $rootScope.player   = Player;
+    $rootScope.note     = Note;
+    $rootScope.ceiling  = Ceiling;
+    $rootScope.bed      = Bed;
+    $rootScope.bathroom = Bathroom;
 
     return room;
 });

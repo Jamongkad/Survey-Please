@@ -2,7 +2,7 @@ angular.module('commandline', [])
 .directive('commandLine', function(Room) {
     return {
         restrict: 'E'     
-      , template: '<input type="text" class="form-control" placeholder="look or inspect object" ng-model="command" ng-enter="capture()"/>' 
+      , template: '<input type="text" class="form-control" placeholder="look (or inspect) something" ng-model="command" ng-enter="capture()"/>' 
       , controller: function($scope, $element, $attrs) { 
 
             $scope.command = "";

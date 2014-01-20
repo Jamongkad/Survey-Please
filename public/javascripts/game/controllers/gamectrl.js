@@ -19,13 +19,12 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     $scope.parentobj.will     = 300;
     $scope.parentobj.insanity = 0;
     $scope.parentobj.panic    = 0;
+    $scope.is_tired = false;
 
     $scope.msgs = [
         {'text': 'You find your<i>self</i> in small <i>room</i>.'}    
      ,  {'text': 'You must find a way to escape before your will runs dry and you go totally insane. '}
     ];
-
-    $scope.branches = [];
 
     $scope.$on('change-player-mode', function(ev, val) {
         if(_.findWhere($scope.playeractions, val) == null) { 
@@ -85,6 +84,7 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     
     var gameover = false
     //timers will
+    /* developing
     var will = setInterval(function() { 
         if($scope.parentobj.will != 0) {
             $scope.parentobj.will--;     
@@ -94,13 +94,13 @@ function GameCtrl($scope, $http, Game, Room, Events) {
         } 
         $scope.$apply(); 
     }, 2000);
+    */
 
     Game.gameover = false;
     Game.logic = function() {
         if(gameover) {
             bootbox.alert("<h2>Game Over</h2>");    
             $scope.msgs = [];
-            $scope.$apply();
         }
 
         if($scope.playeractions.length >= 2) {  
@@ -112,7 +112,11 @@ function GameCtrl($scope, $http, Game, Room, Events) {
             });
         }
 
+        if($scope.playeractions.length >= 10) {  
+            //trigger player fatigue   
+        };
+
+        $scope.$apply();
         Game.gameover = gameover;
-    }
-   
+    }   
 }
