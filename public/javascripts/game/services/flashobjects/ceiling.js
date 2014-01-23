@@ -13,6 +13,7 @@ angular.module('Ceiling', [])
                     "As the abyss creeps closer your vision begins to fade into darkness. Then nothing.";
 
         var attempts = 0;
+        var timeout;
 
         this.wake_up = function() {        
             var msg = "You find yourself on the floor of your <i>room</i>. " + 
@@ -26,6 +27,15 @@ angular.module('Ceiling', [])
             delete $rootScope.room[6].actions['wake up'];
 
             $rootScope.$broadcast('push-message', msg);  
+            $rootScope.$broadcast('activate-creepy-closet');  
+
+            if(timeout) {
+                clearTimeout(timeout); 
+            }
+
+            timeout = setTimeout(function() { 
+                $rootScope.$broadcast('push-message', "You hear something. It is coming from the <i>closet</i>.");  
+            }, 5000);
         }
     }
 
