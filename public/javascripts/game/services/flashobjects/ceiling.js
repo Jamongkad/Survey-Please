@@ -27,15 +27,15 @@ angular.module('Ceiling', [])
             delete $rootScope.room[6].actions['wake up'];
 
             $rootScope.$broadcast('push-message', msg);  
-            $rootScope.$broadcast('activate-creepy-closet');  
-
+            
             if(timeout) {
                 clearTimeout(timeout); 
             }
 
             timeout = setTimeout(function() { 
                 $rootScope.$broadcast('push-message', "You hear something. It is coming from the <i>closet</i>.");  
-            }, 5000);
+                $rootScope.$broadcast('activate-closet');  
+            }, 3000);
         }
     }
 

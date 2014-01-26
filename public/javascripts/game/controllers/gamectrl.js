@@ -96,6 +96,8 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     }, 2000);
     */
 
+    var timeout;
+
     Game.gameover = false;
     Game.logic = function() {
         if(gameover) {
@@ -103,13 +105,19 @@ function GameCtrl($scope, $http, Game, Room, Events) {
             $scope.msgs = [];
         }
 
+        if(timeout) {
+            clearTimeout(timeout); 
+        }
+
         if($scope.playeractions.length >= 2) {  
-            $scope.add_msg({
-                'text': 'A knock on the door startles you. As you rush to find out who it is. ' + 
-                        'You find a <i>note</i> and a plate of food and water at the foot of the door. ' + 
-                        'How did they appear through a solid wooden door is a mystery. ' + 
-                        'All you know, is your captor is intent on keeping you here for the time being. '
-            });
+            timeout = setTimeout(function() { 
+                $scope.add_msg({
+                    'text': 'A knock on the door startles you. As you rush to find out who it is. ' + 
+                            'You find a <i>note</i> and a plate of food and water at the foot of the door. ' + 
+                            'How did they appear through a solid wooden door is a mystery. ' + 
+                            'All you know, is your captor is intent on keeping you here for the time being. '
+                });
+            }, 3000);
         }
 
         if($scope.playeractions.length >= 10) {  

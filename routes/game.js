@@ -17,7 +17,3 @@ exports.buttons = function(req, res) {
 exports.console_item = function(req, res) {    
     res.render("partials/console_item");
 }
-
-exports.door_desc = function(req, res) {     
-    res.render("partials/door_desc");
-}
