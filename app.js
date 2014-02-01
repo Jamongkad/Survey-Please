@@ -36,6 +36,8 @@ app.get('/game/pressme', game.pressme);
 app.get('/game/console_item', game.console_item);
 app.get('/game/buttons', game.buttons);
 app.get('/convo/start', convo.start);
+app.get('/convo/pull_convo_start/:id', convo.pull_convo_start);
+app.get('/convo/convo_start/:id', convo.convo_start);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -1,17 +1,11 @@
 <div class="modal-header">
-    <h2>The Door {{cnt}}</h2>
+    <h4>{{title}}</h4>
 </div>
 <div class="modal-body">
-    <p>
-    s is going to be horribly negative so a bit of context first: I'm a professional C# programmer. I love C#, I think it's a great language.
-
-    But there's a huge downside: C# only works on Windows. This vastly reduces the number of things you can do with it (yeah, I know about Mono). There's nothing here that suggests that this would have anything other than the same restrictions. So, assuming the language develops into everything that's promised, you're left with something on which you can't do mobile, can't do big data, probably won't work very well for scientific computing. In fact, basically you're still stuck with the same LoB apps and ETL tools that C#'s already great at. And probably the same second rate (not awful, not great) web experience.
-
-    So the best you can hope for, basically, is a better C#. But not good enough to take on Java.
-
-    Don't get me wrong, it sounds exciting, but equally I worry that it'll be used as a way to generate patents to prevent the ideas being used elsewhere in environments where, tbh, they'd find more use.
-    </p>
+    <p>{{text}}</p>
 </div>
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
+<div class="modal-footer" style="text-align:left">
+    <p ng-repeat="i in msg" >
+        <a href="#" ng-click="action(i, $event)">{{i.options}}</a> 
+    </p> 
 </div>

@@ -26,7 +26,7 @@ angular.module('Door', [])
 
         this.read = function() { 
             var inscription = "<blockquote>" + 
-                              "You want to learn more? Look up at the <i>ceiling</i>" + 
+                              "Look up at the <i>ceiling</i>" + 
                               "</blockquote>"; 
 
             $rootScope.$broadcast('push-message', inscription);  

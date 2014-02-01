@@ -96,10 +96,11 @@ function GameCtrl($scope, $http, Game, Room, Events) {
     }, 2000);
     */
 
-    var timeout;
 
     Game.gameover = false;
     Game.logic = function() {
+        var timeout;
+
         if(gameover) {
             bootbox.alert("<h2>Game Over</h2>");    
             $scope.msgs = [];
